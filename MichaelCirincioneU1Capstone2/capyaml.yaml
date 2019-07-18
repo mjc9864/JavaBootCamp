@@ -1,0 +1,543 @@
+openapi: 3.0.0
+info:
+  title: Capstone Project
+  description:
+   Capstone project
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8080'
+    description: Local dev server
+paths:
+  /games:
+    get:
+      summary: get games
+      responses:
+        '200':
+          description: games.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Games'
+    post:
+      summary: new customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Games'
+      responses:
+        '201':
+          description: customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Games'
+        '400':
+          description: Invalid request
+        '422':
+          description: invalid error
+  /games/{id}:
+    get:
+      summary: get game id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of customer.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: game Id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Games'
+    delete:
+      summary: delete game.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: delete game by id
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: deleted game
+    put:
+      summary: game id entry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: game id
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Games'
+      responses:
+        '200':
+          description: game loaded
+        '422':
+          description: games
+  /games/studio/{studio}:
+    get:
+      summary: get games by studio
+      parameters:
+        - name: studio
+          in: path
+          required: true
+          description: game studios
+          schema:
+            type: string
+      responses:
+        '200':
+          description: game studio
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Games'
+  /games/esrb/{esrb}:
+    get:
+      summary: get by esrb
+      parameters:
+        - name: esrb
+          in: path
+          required: true
+          description: esrb rating of games
+          schema:
+            type: string
+      responses:
+        '200':
+          description: game esrb.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Games'
+  /games/title/{title}:
+    get:
+      summary: get titles.
+      parameters:
+        - name: title
+          in: path
+          required: true
+          description: get titles
+          schema:
+            type: string
+      responses:
+        '200':
+          description: game  title
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Games'
+  /consoles:
+    get:
+      summary: get consoles
+      responses:
+        '200':
+          description: Consoles objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consoles'
+    post:
+      summary: new console
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consoles'
+      responses:
+        '201':
+          description: consoles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consoles'
+        '400':
+          description: Invalid request
+        '422':
+          description: Invalid request
+  /consoles/{id}:
+    get:
+      summary: get console by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: console id
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Console id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consoles'
+    delete:
+      summary: Delete console
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: delete console
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: deleted
+    put:
+      summary: new console
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: console id
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consoles'
+      responses:
+        '200':
+          description: Consoles loaded
+        '422':
+          description: console id
+  /consoles/manufacturer/{manufacturer}:
+    get:
+      summary: get console
+      parameters:
+        - name: manufacturer
+          in: path
+          required: true
+          description: manufacturer
+          schema:
+            type: string
+      responses:
+        '200':
+          description: console
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consoles'
+  /tshirts:
+    get:
+      summary: tshirts
+      responses:
+        '200':
+          description: Game object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tshirts'
+    post:
+      summary: new t shirt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tshirts'
+      responses:
+        '201':
+          description: tshirt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tshirts'
+        '400':
+          description: Invalid request
+        '422':
+          description: Invalid request
+  /tshirts/{id}:
+    get:
+      summary: get tshirts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: tshirts
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Tshirts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tshirts'
+    delete:
+      summary: Delete thisrt by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: delete tshirt
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Tshirts deleted
+    put:
+      summary: tshirts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: tshirt id
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tshirts'
+      responses:
+        '200':
+          description: tshirt loaded
+        '422':
+          description: Tshirts id
+  /tshirts/color/{color}:
+    get:
+      summary: get thshirt by color
+      parameters:
+        - name: color
+          in: path
+          required: true
+          description: get tshirt by color
+          schema:
+            type: string
+      responses:
+        '200':
+          description: tshirts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tshirts'
+  /tshirts/size/{size}:
+    get:
+      summary: get tshirt
+      parameters:
+        - name: size
+          in: path
+          required: true
+          description: tshirt
+          schema:
+            type: string
+      responses:
+        '200':
+          description: tshirt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tshirts'
+  /PurchasingItem:
+    get:
+      summary: get invoice
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: invoice
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: invoice
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tshirts'
+  /invoice:
+    post:
+      summary: new invoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Purchasing'
+      responses:
+        '201':
+          description: invoice
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '400':
+          description: Invalid request
+        '422':
+          description: Invalid request
+components:
+  schemas:
+    Games:
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        ersbRating:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        studio:
+          type: string
+        quantity:
+          type: integer
+      required:
+        - title
+        - ersbRating
+        - description
+        - price 
+        - studio
+        - quantity
+    Consoles:
+      properties:
+        id:
+          type: integer
+        model:
+          type: string
+        manufacturer:
+          type: string
+        memoryAmount:
+          type: string
+        processor:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+      required:
+        - model
+        - manufacturer
+        - memoryAmount
+        - processor
+        - price
+        - quantity
+    Tshirts:
+      properties:
+        id:
+          type: integer
+        size:
+          type: integer
+        color:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+      required:
+          - size
+          - color
+          - description
+          - price
+          - quantity
+    Purchasing:
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: string
+        itemType:
+          type: string
+        itemId:
+          type: integer
+        quantity:
+          type: integer
+      required:
+        - name
+        - street
+        - city
+        - state
+        - zipCode
+        - itemType
+        - itemId
+        - quantity
+    Invoice:
+      properties:
+        invoiceId:
+          type: integer
+        name:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type : string
+        itemType:
+          type: string
+        itemId:
+          type: integer
+        unitPrice:
+          type: number
+        quantity:
+          type: integer
+        subtotal:
+          type: number
+        tax:
+          type: number
+        processingFee:
+          type: number
+        total:
+          type: number
+      required:
+        - invoiceId
+        - name
+        - street
+        - city
+        - state
+        - zipCode
+        - itemType
+        - itemId
+        - unitPrice
+        - quantity
+        - subtotal
+        - tax
+        - processingFee
+        - total
