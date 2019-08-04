@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: Summative 4 yaml
+  description: Quote of the day, Magic eight ball, and Word of the day.
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8080'
+    description: Local Dev Server
+paths:
+  /quote:
+    get:
+      summary: random quote
+      responses:
+        '200':
+          description: Quote Of The Day
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        '400':
+          description: Invalid request.
+  /word:
+    get:
+      summary: random word and definition
+      responses:
+        '200':
+          description: Word Definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Definition'
+  /magic:
+    post:
+      summary: Creates question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Magic'
+      responses:
+        '201':
+          description: A question 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Magic'
+        '400':
+          description: Invalid request.
+        '422':
+          description: Incomplete information. Some fields are missing.
+components:
+  schemas:
+    Quote:
+      properties:
+        Author:
+          type: string
+        Quote:
+          type: string
+      required:
+        - Author
+        - Quote
+    Definition:
+      properties:
+        Word:
+          type: string
+        Definition:
+          type: string
+      required:
+        - Definition
+    Magic:
+      properties:
+        Question:
+          type: string
+      required:
+        - Question
+        - Answer
